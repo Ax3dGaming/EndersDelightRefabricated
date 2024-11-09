@@ -1,10 +1,9 @@
 plugins {
 	id 'fabric-loom' version '1.6-SNAPSHOT'
 	id 'maven-publish'
-	id "me.modmuss50.mod-publish-plugin" version "0.6.2"
 }
 
-version = project.mod_version
+version = "${mc_version}-${mod_version}.refabricated"
 group = project.maven_group
 
 base {
@@ -52,37 +51,24 @@ repositories {
 	mavenCentral() // Mixin Extras
 }
 
-loom {
-    splitEnvironmentSourceSets()
-
-	mods {
-		"endersdelight" {
-			sourceSet sourceSets.main
-			sourceSet sourceSets.client
-		}
-	}
-
-}
-
 dependencies {
 	minecraft "com.mojang:minecraft:${mc_version}"
-
 	mappings loom.layered() {
 		it.officialMojangMappings {
 			setNameSyntheticMembers(false)
 		}
 		parchment("org.parchmentmc.data:parchment-1.20.1:2023.09.03@zip")
 	}
-
 	modImplementation "net.fabricmc:fabric-loader:${loader_version}"
 
+	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
 
 	modImplementation("vectorwing:FarmersDelight:${farmersdelight_version}+refabricated") {
 		exclude(group: "net.fabricmc")
 	}
 
-	modLocalRuntime("com.terraformersmc:modmenu:${project.modmenu_version}")
+	modLocalRuntime("com.terraformersmc:modmenu:${modmenu_version}")
 
 }
 
@@ -105,8 +91,8 @@ java {
 	// If you remove this line, sources will not be generated.
 	withSourcesJar()
 
-	sourceCompatibility = JavaVersion.VERSION_21
-	targetCompatibility = JavaVersion.VERSION_21
+	sourceCompatibility = JavaVersion.VERSION_17
+	targetCompatibility = JavaVersion.VERSION_17
 }
 
 jar {

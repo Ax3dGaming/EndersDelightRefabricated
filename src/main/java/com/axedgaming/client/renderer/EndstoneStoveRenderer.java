@@ -5,6 +5,8 @@ import com.axedgaming.common.blocks.entity.EndstoneStoveBlockEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import io.github.fabricators_of_create.porting_lib.transfer.item.ItemStackHandlerContainer;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.LevelRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -16,6 +18,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec2;
 import org.jetbrains.annotations.NotNull;
 
+@Environment(EnvType.CLIENT)
 public class EndstoneStoveRenderer implements BlockEntityRenderer<EndstoneStoveBlockEntity> {
     public EndstoneStoveRenderer(BlockEntityRendererProvider.Context context) {
     }
@@ -23,9 +26,9 @@ public class EndstoneStoveRenderer implements BlockEntityRenderer<EndstoneStoveB
     public void render(EndstoneStoveBlockEntity stoveEntity, float partialTicks, @NotNull PoseStack poseStack, @NotNull MultiBufferSource buffer, int combinedLightIn, int combinedOverlayIn) {
         Direction direction = stoveEntity.getBlockState().getValue(EndstoneStoveBlock.FACING).getOpposite();
         ItemStackHandlerContainer inventory = stoveEntity.getInventory();
-        int posLong = (int)stoveEntity.getBlockPos().asLong();
+        int posLong = (int) stoveEntity.getBlockPos().asLong();
 
-        for(int i = 0; i < inventory.getSlotCount(); ++i) {
+        for (int i = 0; i < inventory.getSlotCount(); ++i) {
             ItemStack stoveStack = inventory.getStackInSlot(i);
             if (!stoveStack.isEmpty()) {
                 poseStack.pushPose();
@@ -34,7 +37,7 @@ public class EndstoneStoveRenderer implements BlockEntityRenderer<EndstoneStoveB
                 poseStack.mulPose(Axis.YP.rotationDegrees(f));
                 poseStack.mulPose(Axis.XP.rotationDegrees(90.0F));
                 Vec2 itemOffset = stoveEntity.getStoveItemOffset(i);
-                poseStack.translate((double)itemOffset.x, (double)itemOffset.y, 0.0);
+                poseStack.translate((double) itemOffset.x, (double) itemOffset.y, 0.0);
                 poseStack.scale(0.375F, 0.375F, 0.375F);
                 if (stoveEntity.getLevel() != null) {
                     Minecraft.getInstance().getItemRenderer().renderStatic(stoveStack, ItemDisplayContext.FIXED, LevelRenderer.getLightColor(stoveEntity.getLevel(), stoveEntity.getBlockPos().above()), combinedOverlayIn, poseStack, buffer, stoveEntity.getLevel(), posLong + i);

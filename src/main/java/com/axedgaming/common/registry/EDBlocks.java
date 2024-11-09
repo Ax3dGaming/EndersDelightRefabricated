@@ -8,6 +8,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import vectorwing.farmersdelight.common.block.StoveBlock;
 
 import java.util.function.Supplier;
 import java.util.function.ToIntFunction;

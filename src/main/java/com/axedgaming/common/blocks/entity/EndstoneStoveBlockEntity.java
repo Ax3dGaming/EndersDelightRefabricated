@@ -25,7 +25,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import vectorwing.farmersdelight.common.block.entity.SyncedBlockEntity;
 import vectorwing.farmersdelight.common.mixin.accessor.RecipeManagerAccessor;
 import vectorwing.farmersdelight.common.utility.ItemUtils;
-import vectorwing.farmersdelight.common.block.StoveBlock;
 
 import java.util.Optional;
 
@@ -97,7 +96,7 @@ public class EndstoneStoveBlockEntity extends SyncedBlockEntity {
         for(int i = 0; i < stove.inventory.getSlotCount(); ++i) {
             if (!stove.inventory.getStackInSlot(i).isEmpty() && level.random.nextFloat() < 0.2F) {
                 Vec2 stoveItemVector = stove.getStoveItemOffset(i);
-                Direction direction = state.getValue(StoveBlock.FACING);
+                Direction direction = state.getValue(EndstoneStoveBlock.FACING);
                 int directionIndex = direction.get2DDataValue();
                 Vec2 offset = directionIndex % 2 == 0 ? stoveItemVector : new Vec2(stoveItemVector.y, stoveItemVector.x);
                 double x = (double)pos.getX() + 0.5 - (double)((float)direction.getStepX() * offset.x) + (double)((float)direction.getClockWise().getStepX() * offset.x);
@@ -212,7 +211,7 @@ public class EndstoneStoveBlockEntity extends SyncedBlockEntity {
             for(int i = 0; i < this.inventory.getSlotCount(); ++i) {
                 if (!this.inventory.getStackInSlot(i).isEmpty() && this.level.random.nextFloat() < 0.2F) {
                     Vec2 stoveItemVector = this.getStoveItemOffset(i);
-                    Direction direction = this.getBlockState().getValue(StoveBlock.FACING);
+                    Direction direction = this.getBlockState().getValue(EndstoneStoveBlock.FACING);
                     int directionIndex = direction.get2DDataValue();
                     Vec2 offset = directionIndex % 2 == 0 ? stoveItemVector : new Vec2(stoveItemVector.y, stoveItemVector.x);
                     double x = (double)this.worldPosition.getX() + 0.5 - (double)((float)direction.getStepX() * offset.x) + (double)((float)direction.getClockWise().getStepX() * offset.x);

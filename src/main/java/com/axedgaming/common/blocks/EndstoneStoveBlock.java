@@ -1,5 +1,7 @@
 package com.axedgaming.common.blocks;
 
+import com.axedgaming.common.blocks.entity.EndstoneStoveBlockEntity;
+import com.axedgaming.common.registry.EDBlockEntityTypes;
 import io.github.fabricators_of_create.porting_lib.tool.ToolActions;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -33,9 +35,6 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
-import vectorwing.farmersdelight.common.block.StoveBlock;
-import vectorwing.farmersdelight.common.block.entity.StoveBlockEntity;
-import vectorwing.farmersdelight.common.registry.ModBlockEntityTypes;
 import vectorwing.farmersdelight.common.registry.ModDamageTypes;
 import vectorwing.farmersdelight.common.registry.ModSounds;
 import vectorwing.farmersdelight.common.utility.ItemUtils;
@@ -89,7 +88,7 @@ public class EndstoneStoveBlock extends BaseEntityBlock {
         }
 
         BlockEntity tileEntity = level.getBlockEntity(pos);
-        if (tileEntity instanceof StoveBlockEntity stoveEntity) {
+        if (tileEntity instanceof EndstoneStoveBlockEntity stoveEntity) {
             int stoveSlot = stoveEntity.getNextEmptySlot();
             if (stoveSlot < 0 || stoveEntity.isStoveBlockedAbove()) {
                 return InteractionResult.PASS;
@@ -126,7 +125,7 @@ public class EndstoneStoveBlock extends BaseEntityBlock {
 
     @Override
     public void stepOn(Level level, BlockPos pos, BlockState state, Entity entity) {
-        boolean isLit = level.getBlockState(pos).getValue(StoveBlock.LIT);
+        boolean isLit = level.getBlockState(pos).getValue(EndstoneStoveBlock.LIT);
         if (isLit && !entity.fireImmune() && entity instanceof LivingEntity && !EnchantmentHelper.hasFrostWalker((LivingEntity) entity)) {
             entity.hurt(ModDamageTypes.getSimpleDamageSource(level, ModDamageTypes.STOVE_BURN), 1.0F);
         }
@@ -138,8 +137,8 @@ public class EndstoneStoveBlock extends BaseEntityBlock {
     public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
         if (state.getBlock() != newState.getBlock()) {
             BlockEntity tileEntity = level.getBlockEntity(pos);
-            if (tileEntity instanceof StoveBlockEntity) {
-                ItemUtils.dropItems(level, pos, ((StoveBlockEntity) tileEntity).getInventory());
+            if (tileEntity instanceof EndstoneStoveBlockEntity) {
+                ItemUtils.dropItems(level, pos, ((EndstoneStoveBlockEntity) tileEntity).getInventory());
             }
 
             super.onRemove(state, level, pos, newState, isMoving);
@@ -169,23 +168,23 @@ public class EndstoneStoveBlock extends BaseEntityBlock {
             double yOffset = rand.nextDouble() * 6.0D / 16.0D;
             double zOffset = direction$axis == Direction.Axis.Z ? (double) direction.getStepZ() * 0.52D : horizontalOffset;
             level.addParticle(ParticleTypes.SMOKE, x + xOffset, y + yOffset, z + zOffset, 0.0D, 0.0D, 0.0D);
-            level.addParticle(ParticleTypes.FLAME, x + xOffset, y + yOffset, z + zOffset, 0.0D, 0.0D, 0.0D);
+            level.addParticle(ParticleTypes.DRAGON_BREATH, x + xOffset, y + yOffset, z + zOffset, 0.0D, 0.0D, 0.0D);
         }
     }
 
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return ModBlockEntityTypes.STOVE.get().create(pos, state);
+        return EDBlockEntityTypes.ENDSTONE_STOVE_BE.get().create(pos, state);
     }
 
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
         if (state.getValue(LIT)) {
-            return BaseEntityBlock.createTickerHelper(blockEntityType, ModBlockEntityTypes.STOVE.get(), level.isClientSide
-                    ? StoveBlockEntity::animationTick
-                    : StoveBlockEntity::cookingTick);
+            return BaseEntityBlock.createTickerHelper(blockEntityType, EDBlockEntityTypes.ENDSTONE_STOVE_BE.get(), level.isClientSide
+                    ? EndstoneStoveBlockEntity::animationTick
+                    : EndstoneStoveBlockEntity::cookingTick);
         }
         return null;
     }
