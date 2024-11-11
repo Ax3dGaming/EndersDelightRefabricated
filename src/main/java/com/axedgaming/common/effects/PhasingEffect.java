@@ -1,9 +1,12 @@
 package com.axedgaming.common.effects;
 
 import com.axedgaming.common.registry.EDDamageSource;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.level.Level;
 
 public class PhasingEffect extends MobEffect {
     public PhasingEffect() {
@@ -11,12 +14,13 @@ public class PhasingEffect extends MobEffect {
     }
 
     public void applyEffectTick(LivingEntity pLivingEntity, int pAmplifier) {
-        if (pLivingEntity.level().isRaining() || (pLivingEntity.isInWaterOrBubble())){
-            pLivingEntity.hurt(EDDamageSource.getSimpleDamageSource(pLivingEntity.level(), EDDamageSource.WATERED), 1.0F);
+        Level world = pLivingEntity.level();
+        if (pLivingEntity.isInWaterRainOrBubble()) {
+            pLivingEntity.hurt(new DamageSource(world.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(EDDamageSource.WATERED)), 1);
         }
     }
 
-    public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
+    public boolean isDurationEffectTick(int duration, int amplifier) {
         return true;
     }
 }
