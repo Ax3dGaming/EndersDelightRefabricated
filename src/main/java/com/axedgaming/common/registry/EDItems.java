@@ -22,6 +22,9 @@ public class EDItems {
 
     //BLOCKS
     public static final Supplier<Item> ENDSTONE_STOVE;
+    public static final Supplier<Item> STUFFED_SHULKER;
+    public static final Supplier<Item> CHORUS_CRATE;
+    public static final Supplier<Item> CHORUS_PIE;
 
     //ITEMS
     public static final Supplier<Item> SHULKER_BOWL;
@@ -67,6 +70,9 @@ public class EDItems {
             { protected boolean placeBlock(BlockPlaceContext context, BlockState state)
             { return super.placeBlock(context, state.setValue(EndstoneStoveBlock.LIT, true));}}
         );
+        STUFFED_SHULKER = ITEMS.register("stuffed_shulker_block", () -> new BlockItem(EDBlocks.STUFFED_SHULKER.get(), basicItem().stacksTo(1)));
+        CHORUS_CRATE = ITEMS.register("chorus_crate", () -> new BlockItem(EDBlocks.CHORUS_CRATE.get(), basicItem()));
+        CHORUS_PIE = ITEMS.register("chorus_pie", () -> new BlockItem(EDBlocks.CHORUS_PIE.get(), basicItem()));
 
         SHULKER_BOWL = ITEMS.register("shulker_bowl", () -> new Item(new Item.Properties()));
         MITE_CRUST = ITEMS.register("mite_crust", () -> new ConsumableItem(new Item.Properties().food(EDFoodValues.DIET)));
