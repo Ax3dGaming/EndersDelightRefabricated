@@ -1,15 +1,18 @@
 package com.axedgaming;
 
-import com.axedgaming.common.registry.EDBlockEntityTypes;
-import com.axedgaming.common.registry.EDBlocks;
-import com.axedgaming.common.registry.EDCreativeTab;
-import com.axedgaming.common.registry.EDItems;
+import com.axedgaming.common.registry.*;
 import net.fabricmc.api.ModInitializer;
+import net.minecraft.resources.ResourceLocation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class EndersDelight implements ModInitializer {
     public static final Logger LOGGER = LoggerFactory.getLogger("endersdelight");
+    public static final String MODID = "endersdelight";
+
+    public static ResourceLocation res(String name) {
+        return new ResourceLocation(MODID, name);
+    }
 
     @Override
     public void onInitialize() {
@@ -21,6 +24,9 @@ public class EndersDelight implements ModInitializer {
         EDBlockEntityTypes.TILES.register();
         EDItems.ITEMS.register();
         EDCreativeTab.TABS.register();
+        EDEffects.init();
+        EDPlayer.init();
+        EDDamageSource.WATERED.registry();
 
         LOGGER.info("Hello Fabric world!");
     }
