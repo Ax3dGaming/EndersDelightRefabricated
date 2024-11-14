@@ -1,0 +1,42 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "name": "pool1",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "endersdelight:endstone_stove",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "endersdelight:endstone_stove",
+              "properties": {
+                "lit": "false"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "endersdelight:endstone_stove",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "endersdelight:endstone_stove",
+              "properties": {
+                "lit": "true"
+              }
+            }
+          ]
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ]
+    }
+  ]
+}
