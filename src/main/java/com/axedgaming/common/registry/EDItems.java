@@ -4,12 +4,11 @@ import com.axedgaming.common.blocks.EndstoneStoveBlock;
 import com.axedgaming.common.items.EDFoodValues;
 import io.github.fabricators_of_create.porting_lib.util.LazyRegistrar;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.BowlFoodItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import vectorwing.farmersdelight.common.FoodValues;
 import vectorwing.farmersdelight.common.item.ConsumableItem;
@@ -94,4 +93,5 @@ public class EDItems {
         ENDER_PAELLA = ITEMS.register("ender_paella", () -> new ConsumableItem(bowlFoodItem(EDFoodValues.ENDER_PAELLA), true));
         STUFFED_SHULKER_BOWL = ITEMS.register("stuffed_shulker_bowl", () -> new ConsumableItem(bowlFoodItem(EDFoodValues.STUFFED_SHULKER), true));
     }
+
 }

@@ -21,6 +21,9 @@
 		],
 		"client": [
 			"com.axedgaming.client.EndersDelightClient"
+		],
+		"jei_mod_plugin": [
+			"com.axedgaming.common.compat.JEIPlugin"
 		]
 	},
 	"mixins": [
