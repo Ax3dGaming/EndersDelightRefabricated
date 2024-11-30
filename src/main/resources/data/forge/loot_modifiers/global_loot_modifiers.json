@@ -3,6 +3,28 @@
   "entries": [
     "endersdelight:scavenging_enderman_sight_from_enderman",
     "endersdelight:scavenging_mite_crust_from_endermite",
-    "endersdelight:scavenging_shulker_mollusk_from_shulker"
+    "endersdelight:scavenging_shulker_mollusk_from_shulker",
+    "endersdelight:axolotl_pet_enderman",
+    "endersdelight:compat/endermanoverhaul/scavenging/badlands_enderman",
+    "endersdelight:compat/endermanoverhaul/scavenging/cave_enderman",
+    "endersdelight:compat/endermanoverhaul/scavenging/coral_enderman",
+    "endersdelight:compat/endermanoverhaul/scavenging/crimson_forest_enderman",
+    "endersdelight:compat/endermanoverhaul/scavenging/dark_oak_enderman",
+    "endersdelight:compat/endermanoverhaul/scavenging/desert_enderman",
+    "endersdelight:compat/endermanoverhaul/scavenging/end_enderman",
+    "endersdelight:compat/endermanoverhaul/scavenging/end_islands_enderman",
+    "endersdelight:compat/endermanoverhaul/scavenging/flower_fields_enderman",
+    "endersdelight:compat/endermanoverhaul/scavenging/hammerhead_pet_enderman",
+    "endersdelight:compat/endermanoverhaul/scavenging/ice_spikes_enderman",
+    "endersdelight:compat/endermanoverhaul/scavenging/mushroom_fields_enderman",
+    "endersdelight:compat/endermanoverhaul/scavenging/nether_wastes_enderman",
+    "endersdelight:compat/endermanoverhaul/scavenging/pet_enderman",
+    "endersdelight:compat/endermanoverhaul/scavenging/savanna_enderman",
+    "endersdelight:compat/endermanoverhaul/scavenging/snowy_enderman",
+    "endersdelight:compat/endermanoverhaul/scavenging/soulsand_valley_enderman",
+    "endersdelight:compat/endermanoverhaul/scavenging/swamp_enderman",
+    "endersdelight:compat/endermanoverhaul/scavenging/windswept_hills_enderman",
+    "endersdelight:compat/endermanoverhaul/scavenging/warped_forest_enderman",
+    "endersdelight:compat/endermanoverhaul/scavenging/nether_wastes_enderman"
   ]
 }
